@@ -1,0 +1,133 @@
+header{
+  background-color: rgb(71, 71, 71);
+  width: 100%;
+}
+body,
+header{
+  padding: 0;
+  margin: 0;
+}
+
+html{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logo{
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+.logo img{
+  width: 30px;
+  vertical-align: baseline;
+}
+
+.logo span{
+  position: relative;
+  padding-top: 3.5px;
+  padding-left: 2px;
+}
+
+main{
+  padding-top: 30px;
+  position: relative;
+  background-color: rgb(32, 32, 32);
+}
+
+.title{
+  text-align: center;
+}
+
+.title span{
+  color: green;
+  font-weight: 400;
+  font-size: 35px;
+  padding: 40px;
+}
+
+.link-area{
+  position: inherit;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 60px;
+}
+
+#link-box,
+.down-button{
+  border-radius: 15px;
+  font-size: 15px;
+  background-color: rgb(71, 71, 71);
+  border: none;
+  caret-color: white;
+  color: white;
+  padding: 10px 20px;
+  width: 85%;
+}
+
+#link-box::-webkit-input-placeholder{
+  font-size: 14px;
+  vertical-align: bottom;
+  border: none;
+  padding: 10px 0px;
+}
+
+#link-box:hover{
+  border: 3px white;
+}
+
+.paste-button{
+  position: absolute;
+  right: 4.5%;
+  top: 4%;
+  background-color: #515151;
+  border-radius: 10px;
+  padding: 7px;
+  border: 1px lightblue solid;
+}
+
+.first-article{
+  font-size: 20px;
+  position: relative;
+  padding: 2% 15%;
+  width: 75%;
+}
+
+.first-article span{
+  color: green;
+}
+
+.first-article p{
+  color: white;
+}
+
+.text{
+  text-align: left;
+}
+
+.first-article img{
+  width: 85%;
+}
+
+.logo a{
+  text-decoration: none;
+  color: white;
+  padding: 0;
+  display: inline-flex; 
+}
+
+main a{
+  text-decoration: none;
+  color: rgb(84, 84, 243);
+}
+
+.down-button{
+  position: relative;
+  margin-top: 10px;
+  width: 96%;
+  background-color: green;
+}
