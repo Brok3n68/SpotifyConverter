@@ -1,81 +1,28 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Spotify Downloader</title>
-        <link rel="stylesheet" type="text/css" href="CSS/style.css">
-    </head>
-
-    <body>
-        <header>
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/favicon.png">
-                    <span>SpotifyDown</span>
-                </a>
-            </div>
-        </header>
-
-        <main>
-            <div class="title">
-                <span>Spotify Downloader</span>
-            </div>
-
-            <div class="first-line">
-                <div class="link-area">
-                    <input id="link-box" type="text" placeholder="https://open.spotify.com/.../...">
-                    <button class="paste-button">Incolla</button>
-                </div>
-    
-                <div class="menu-choice">
-                    <select>
-                        <option value="mp3">MP3</option>
-                        <option value="lyrics">Lyrics (.txt file)</option>
-                    </select>
-                </div>
-            </div>
-            
-
-            <div class="buttonfordown">
-                <button class="down-button">Scarica</button>
-            </div>
-            
-
-    <!--        <div class="first-article">
-                <div class="text">
-                    <span>Come usare SpotifyDown?</span>
-                    <p>Ecco una semplice guida su come utilizzarlo <strong>SpotifyDown:</strong></p>
-                    <p>1. Apri l'app Spotify</p>
-                    <p>2. Trova la canzone / l'album che vuoi scaricare</p>
-                    <p>3. Fai clic sul pulsante "3 puntini". Il pulsante sembra così: ...</p>
-                    <p>4. Fai clic su "Condividi" e poi sul pulsante "Copia link"</p>
-                    <p>5. Incolla il link copiato sopra e premi "Invia"</p>
-                    <p>6. Attendere il completamento dell'elaborazione e fare clic sul pulsante "Scarica"</p>
-                    <p>PC:</p>
-                    <img src="assets/pc_album_copylink.png">
-
-                    <p>Android/iOS:</p>
-                    <img src="assets/phone_album_copylink1.jpg">                  
-                    <br>
-                    <br>
-                    <hr width="90%">
-                    <br>
-                    <span>Spotify Downloader - Download songs, albums, and playlists from Spotify!</span>
-                    <p>Looking for a way to download songs, albums, and playlists from Spotify? Look no further than our new <strong>Spotify Downloader</strong>!</p>
-                    <p>This online tool lets you quickly and easily download any song, album, or playlist from Spotify. Best of all, it's free and easy to use!</p>
-                    <p>Enter the URL of the song, album, or playlist you want to download, and our Spotify Downloader will take care of the rest.</p>
-                    <p>You can then save the songs to your computer or mobile device for offline playback. Give it a try today, and enjoy your favorite music anytime and anywhere!</p>
-                    <hr width="100%">
-                    <a href="#">Reddit Downloader</a>
-                    <p style="font-size: 10px; color: darkgrey">
-                        This website is not affiliated with or endorsed by Spotify AB. Our use of the name "Spotify" is for context, not claiming any ownership. It remains the property of the copyright holder.
-                    </p>
-                    <p style="font-size: 10px; color: darkgrey">
-                        Spotifydown.com doesn't host any copyrighted material. We utilize third party services to accomplish our goals.
-                    </p>
-                    <p style="font-size: 16px;">© 2023 SpotifyDown.com</p>
-                </div>
-
-            -->
-        </main>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotifyDown</title>
+    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/favicon.png">
+                <span>SpotifyDown</span>
+            </a>
+        </div>
+    </header>
+    <form id="spotifyForm">
+        <label for="spotifyLink">Enter Spotify Link:</label>
+        <input type="text" id="spotifyLink" placeholder="https://open.spotify.com/...">
+        <button type="button" id="fetchButton">Scarica</button>
+    </form>
+    <div id="metadataResult">
+        <!-- Metadata will be displayed here -->
+    </div>
+    <script src="Javascript/script.js"></script>
+</body>
 </html>
