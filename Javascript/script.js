@@ -116,9 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
           "<p>An error occurred while fetching metadata.</p>";
       }
     } else if (trackIdMatch) {
-
       // Handle single track link
-      
+
       const trackId = trackIdMatch[1];
       const apiUrl = `https://api.spotify.com/v1/tracks/${trackId}`;
 
@@ -181,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
         metadataResult.innerHTML =
           "<p>An error occurred while fetching metadata.</p>";
       }
-    } else if (albumIdMatch){
+    } else if (albumIdMatch) {
       const albumId = albumIdMatch[1];
       const initialAlbumUrl = `https://api.spotify.com/v1/albums/${albumId}`;
 
@@ -211,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const accessToken = tokenData.access_token;
 
           // Fetch the initial playlist data to get the total number of tracks
-          const initialPlaylistResponse = await fetch(initialAlbumUrl, {
+          const initialAlbumResponse = await fetch(initialAlbumUrl, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
             },
@@ -223,36 +222,50 @@ document.addEventListener("DOMContentLoaded", () => {
                 Authorization: `Bearer ${accessToken}`,
               },
             });
-          
+
             if (initialAlbumResponse.ok) {
               const initialAlbumData = await initialAlbumResponse.json();
               const albumName = initialAlbumData.name;
-              const artistNames = initialAlbumData.artists.map((artist) => artist.name);
-          
+              const artistNames = initialAlbumData.artists.map(
+                (artist) => artist.name
+              );
+
               // Ottieni direttamente le tracce dell'album
               const allTracks = initialAlbumData.tracks.items;
-          
-              metadataResult.innerHTML = `<h2>Metadata for Album: ${albumName} by ${artistNames.join(", ")}</h2>
+
+              metadataResult.innerHTML = `<h2>Metadata for Album: ${albumName} by ${artistNames.join(
+                ", "
+              )}</h2>
                 <button type="button" id="downloadButton">Scarica L'Album</button>`;
-              
-                allTracks.forEach((track, index) => {
-                  metadataResult.innerHTML += `
+
+              allTracks.forEach((track, index) => {
+                metadataResult.innerHTML += `
                     <h3>[${index + 1} / ${allTracks.length}]</h3>
                     <p><strong>Name:</strong> ${track.name}</p>
                     <p><strong>Artist(s):</strong> ${track.artists
                       .map((artist) => artist.name)
                       .join(", ")}</p>
-                    ${track.album ? `<p><strong>Album:</strong> ${track.album.name}</p>` : ''}
-                    ${track.album ? `<p><strong>Release Date:</strong> ${track.album.release_date}</p>` : ''}
+                    ${
+                      track.album
+                        ? `<p><strong>Album:</strong> ${track.album.name}</p>`
+                        : ""
+                    }
+                    ${
+                      track.album
+                        ? `<p><strong>Release Date:</strong> ${track.album.release_date}</p>`
+                        : ""
+                    }
                     <br>
                     <br>`;
-                });
+              });
             } else {
-              metadataResult.innerHTML = "<p>Failed to fetch album data. Please check the Spotify album link and try again.</p>";
+              metadataResult.innerHTML =
+                "<p>Failed to fetch album data. Please check the Spotify album link and try again.</p>";
             }
           } catch (error) {
             console.error(error);
-            metadataResult.innerHTML = "<p>An error occurred while fetching album metadata.</p>";
+            metadataResult.innerHTML =
+              "<p>An error occurred while fetching album metadata.</p>";
           }
         } else {
           metadataResult.innerHTML =
@@ -263,13 +276,12 @@ document.addEventListener("DOMContentLoaded", () => {
         metadataResult.innerHTML =
           "<p>An error occurred while fetching metadata.</p>";
       }
-    }
-    else {
+    } else {
       // Handle invalid link
       metadataResult.innerHTML =
         "<p>Invalid Spotify link. Please enter a valid Spotify track or playlist link.</p>";
     }
   });
 
-console.log();
+  console.log();
 });
