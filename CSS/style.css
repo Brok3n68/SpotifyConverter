@@ -35,6 +35,7 @@ main{
   padding-top: 30px;
   position: relative;
   background-color: rgb(32, 32, 32);
+  text-align: center;
 }
 
 .title{
@@ -48,17 +49,8 @@ main{
   padding: 40px;
 }
 
-.link-area{
-  position: inherit;
-  width: 70%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 60px;
-}
 
-#link-box,
-.down-button{
+#link-box{
   border-radius: 15px;
   font-size: 15px;
   background-color: rgb(71, 71, 71);
@@ -67,6 +59,24 @@ main{
   color: white;
   padding: 10px 20px;
   width: 85%;
+}
+
+.down-button{
+  width: 70%;
+  border-radius: 15px;
+  font-size: 15px;
+  padding: 10px 20px;
+  caret-color: white;
+  color: white;
+  border: none;
+  position: relative;
+  margin-top: 10px;
+  background-color: green;
+}
+
+.buttonfordown{
+  align-items: center;
+  justify-content: center;
 }
 
 #link-box::-webkit-input-placeholder{
@@ -80,15 +90,6 @@ main{
   border: 3px white;
 }
 
-.paste-button{
-  position: absolute;
-  right: 4.5%;
-  top: 4%;
-  background-color: #515151;
-  border-radius: 10px;
-  padding: 7px;
-  border: 1px lightblue solid;
-}
 
 .first-article{
   font-size: 20px;
@@ -125,9 +126,42 @@ main a{
   color: rgb(84, 84, 243);
 }
 
-.down-button{
-  position: relative;
-  margin-top: 10px;
-  width: 96%;
-  background-color: green;
+.menu-choice{
+  margin-bottom: 10px;
+
 }
+
+.menu-choice select{
+  font-size: 18px;
+}
+
+#link-box{
+  width: 70%;
+}
+
+.first-line{
+  justify-content: center;
+  display: inline;
+  flex-direction: row;
+}
+
+.paste-button{
+  margin-left: 5px;
+  background-color: #515151;
+  border-radius: 10px;
+  padding: 7px;
+  font-size: 16px;
+  border: 1px lightblue solid;
+}
+
+.link-area{
+  margin-top: 40px;
+  margin-bottom: 15px;
+ 
+}
+
+
+
+
+
+
