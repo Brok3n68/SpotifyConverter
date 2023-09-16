@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const API_KEY = "AIzaSyBvBuQ3b_3wZ99iQbDNXzgeR2L_RSGu13k";
   const fetchButton = document.getElementById("fetchButton");
   const spotifyLinkInput = document.getElementById("link-box");
   const metadataResult = document.getElementById("metadataResult");
   const userChoice = document.getElementById("choice");
+  let plist = "true";
+  let allTracks = [];
+
 
   fetchButton.addEventListener("click", async () => {
     const spotifyLink = spotifyLinkInput.value;
@@ -18,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (playlistIdMatch) {
       // Handle playlist link
+      plist = "true";
       const playlistId = playlistIdMatch[1];
       const initialPlaylistUrl = `https://api.spotify.com/v1/playlists/${playlistId}`;
 
@@ -85,22 +90,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Now 'allTracks' contains all the tracks in the playlist
             // Print metadata for each track
+
             metadataResult.innerHTML = `<h2>Metadata for Playlist Tracks:</h2>
-              <button type=button id="downloadButton">Scarica La Playlist</button>`;
-            allTracks.forEach((track, index) => {
-              metadataResult.innerHTML += `
-                <h3>[${index + 1} / ${allTracks.length}]</h3>
-                  <p><strong>Name:</strong> ${track.track.name}</p>
-                  <p><strong>Artist(s):</strong> ${track.track.artists
-                    .map((artist) => artist.name)
-                    .join(", ")}</p>
-                  <p><strong>Album:</strong> ${track.track.album.name}</p>
-                  <p><strong>Release Date:</strong> ${
-                    track.track.album.release_date
-                  }</p>
-                  <br>
-                  <br>`;
-            });
+              <button type="button" id="downloadButton">Scarica La Playlist</button>`;
+
+              allTracks.forEach((track, index) => {
+                let artist = track.track.artist;
+                let title = track.track.name;
+                metadataResult.innerHTML += `
+                  <h3>[${index + 1} / ${allTracks.length}]</h3>
+                    <p id="title"><strong>Name:</strong> ${title}</p>
+                    <p id="artist"><strong>Artist(s):</strong> ${track.track.artists
+                      .map((artist) => artist.name)
+                      .join(", ")}</p>
+                    <p><strong>Album:</strong> ${track.track.album.name}</p>
+                    <p><strong>Release Date:</strong> ${
+                      track.track.album.release_date
+                    }</p>
+                    <br>
+                    <button type="button" class="download-button" data-track-id="${index + 1}">Scarica ${title}</button>
+                    <br>
+                    <br>`;
+                });
+              
+              
+              const downloadButton = document.getElementById("downloadButton");
+              downloadButton.addEventListener("click", async () => {
+                if (plist === "true") {
+                  for (let i = 0; i < allTracks.length; i++) {
+                    const track = allTracks[i].track;
+                    const artist = track.artists.map((artist) => artist.name).join(", ");
+                    const title = track.name;
+              
+                    const query = `${title} ${artist} (Lyrics)`;
+                    console.log(query);
+              
+                    fetch(
+                      `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&q=${query}&type=video&part=snippet`
+                    )
+                      .then((response) => response.json())
+                      .then((data) => {
+                        // Check if there are search results
+                        if (data.items.length === 0) {
+                          console.log("No search results found.");
+                          document.getElementById("videoUrl").textContent =
+                            "No search results found.";
+                          return;
+                        }
+              
+                        // Extract the video ID of the first result
+                        const videoId = data.items[0].id.videoId;
+              
+                        // Create the URL for the first video
+                        const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+              
+                        console.log("URL of the first video:", videoUrl);
+                      })
+                      .catch((err) => {
+                        console.error("Error searching on YouTube:", err);
+                      });
+                  }
+                }
+              });
+
+                            // Aggiungi un gestore di eventi ai pulsanti di download
+              const downloadButtons = document.querySelectorAll(".download-button");
+
+              downloadButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                  const trackId = button.getAttribute("data-track-id");
+                  const selectedTrack = allTracks[trackId - 1].track;
+
+                  // Ora puoi utilizzare selectedTrack per scaricare la canzone specifica
+                  // Aggiungi qui il codice per il download della canzone specifica
+                  const artist = selectedTrack.artists.map((artist) => artist.name).join(", ");
+                  const title = selectedTrack.name;
+
+                  const query = `${title} ${artist} (Lyrics)`;
+                  console.log(query);
+
+                  // Esegui il download della canzone specifica
+                  // Puoi utilizzare la query per cercare la canzone su YouTube e ottenere il link di download
+                  fetch(
+                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&q=${query}&type=video&part=snippet`
+                  )
+                    .then((response) => response.json())
+                    .then((data) => {
+                      // Check if there are search results
+                      if (data.items.length === 0) {
+                        console.log("No search results found.");
+                        document.getElementById("videoUrl").textContent =
+                          "No search results found.";
+                        return;
+                      }
+            
+                      // Extract the video ID of the first result
+                      const videoId = data.items[0].id.videoId;
+            
+                      // Create the URL for the first video
+                      const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+            
+                      console.log("URL of the first video:", videoUrl);
+                    })
+                    .catch((err) => {
+                      console.error("Error searching on YouTube:", err);
+                    });
+                });
+              });
+
           } else {
             // Handle error for initial playlist request
             metadataResult.innerHTML =
@@ -159,8 +256,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Display metadata for the single track
             metadataResult.innerHTML = "<h2>Metadata for Single Track:</h2>";
             metadataResult.innerHTML += `
-                <p><strong>Name:</strong> ${data.name}</p>
-                <p><strong>Artist(s):</strong> ${data.artists
+                <p id="title"><strong>Name:</strong> ${data.name}</p>
+                <p id="artist"><strong>Artist(s):</strong> ${data.artists
                   .map((artist) => artist.name)
                   .join(", ")}</p>
                 <p><strong>Album:</strong> ${data.album.name}</p>
@@ -241,8 +338,8 @@ document.addEventListener("DOMContentLoaded", () => {
               allTracks.forEach((track, index) => {
                 metadataResult.innerHTML += `
                     <h3>[${index + 1} / ${allTracks.length}]</h3>
-                    <p><strong>Name:</strong> ${track.name}</p>
-                    <p><strong>Artist(s):</strong> ${track.artists
+                    <p id="title"><strong>Name:</strong> ${track.name}</p>
+                    <p id="artist"><strong>Artist(s):</strong> ${track.artists
                       .map((artist) => artist.name)
                       .join(", ")}</p>
                     ${
@@ -258,6 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <br>
                     <br>`;
               });
+
             } else {
               metadataResult.innerHTML =
                 "<p>Failed to fetch album data. Please check the Spotify album link and try again.</p>";
@@ -281,7 +379,21 @@ document.addEventListener("DOMContentLoaded", () => {
       metadataResult.innerHTML =
         "<p>Invalid Spotify link. Please enter a valid Spotify track or playlist link.</p>";
     }
+
+    
+
+    function search_and_download_yt(artist, title){
+      
+    }
+    
   });
 
-  console.log();
+  // Search for the song on YouTube
+  
+  
+
+
+
+  
+
 });

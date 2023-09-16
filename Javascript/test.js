@@ -6,7 +6,7 @@ const API_KEY = "AIzaSyBvBuQ3b_3wZ99iQbDNXzgeR2L_RSGu13k";
 youtube.search.list(
   {
     key: API_KEY,
-    q: "///", // Replace with your song and artist name
+    q: "Bohemian rapsody lyrics", // Replace with your song and artist name
     type: "video",
     part: "snippet", // Add this line to specify the 'snippet' part
   },
