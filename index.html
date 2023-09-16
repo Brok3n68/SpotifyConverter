@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpotifyDown</title>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/favicon.png">
-                <span>SpotifyDown</span>
-            </a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SpotifyDown</title>
+        <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/favicon.png">
+                        <span>SpotifyDown</span>
+                    </a>
+                </div>
+            </header>
+
+        <div class="first-line">
+            <div class="link-area">
+                <input id="link-box" type="text" placeholder="Enter Spotify Link (https://open.spotify.com/.../...)">
+            </div>
+
+            <div class="menu-choice" id="choice">
+                <select>
+                    <option value="mp3">MP3</option>
+                    <option value="lyrics">Lyrics (.txt file)</option>
+                </select>
+            </div>
         </div>
-    </header>
-    <form id="spotifyForm">
-        <label for="spotifyLink">Enter Spotify Link:</label>
-        <input type="text" id="spotifyLink" placeholder="https://open.spotify.com/...">
-        <button type="button" id="fetchButton">Scarica</button>
-    </form>
-    <div id="metadataResult">
-        <!-- Metadata will be displayed here -->
-    </div>
-    <script src="Javascript/script.js"></script>
-</body>
+        
+        <div class="buttonfordown">
+            <button type="button" id="fetchButton">Scarica</button>
+        </div>
+
+        <div id="metadataResult">
+            <!-- Metadata will be displayed here -->
+        </div>
+            
+        <script src="Javascript/script.js"></script> 
+        </main>       
+    </body>
 </html>

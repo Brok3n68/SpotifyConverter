@@ -8,31 +8,32 @@ header{
   margin: 0;
 }
 
+
+
 html{
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo{
   padding: 20px;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   vertical-align: middle;
   display: inline-flex;
 }
 
 .logo img{
-  width: 30px;
-  vertical-align: baseline;
+  width: 40px;
+  vertical-align: middle;
 }
 
 .logo span{
   position: relative;
-  padding-top: 3.5px;
+  padding-top: 5px;
   padding-left: 2px;
 }
 
 main{
-  padding-top: 30px;
   position: relative;
   background-color: rgb(32, 32, 32);
   text-align: center;
@@ -90,7 +91,6 @@ main{
   border: 3px white;
 }
 
-
 .first-article{
   font-size: 20px;
   position: relative;
@@ -145,19 +145,31 @@ main a{
   flex-direction: row;
 }
 
-.paste-button{
+#fetchButton{
   margin-left: 5px;
-  background-color: #515151;
-  border-radius: 10px;
+  background-color: #cccccc;
+  border-radius: 15px;
   padding: 7px;
   font-size: 16px;
-  border: 1px lightblue solid;
+  border: 2px rgb(0, 0, 0) solid;
 }
 
 .link-area{
   margin-top: 40px;
   margin-bottom: 15px;
  
+}
+
+#metadataResult h2, p{
+  color: rgb(192, 192, 192);
+}
+
+#metadataResult h3{
+  color: green;
+}
+
+#metadataResult p strong{
+  color: rgb(255, 255, 255);
 }
 
 
